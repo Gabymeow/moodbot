@@ -45,6 +45,6 @@ plt.title('Simple bar chart')
 plt.grid(True)   # линии вспомогательной сетки
 
 
-# смотри преамбулу
+# смотри преамбулу 3232322
 #save(name='pic_2_2', fmt='png')
 """
