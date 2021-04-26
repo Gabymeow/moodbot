@@ -14,22 +14,26 @@ db = sqlighter('db.db')
 def new_user(message):
 	db = sqlighter('db.db')
 	if(not db.subscriber_exists(message.from_user.id)):
-		bot.send_message(message.from_user.id, 'Привет, начинаем записывать твое настроение. Не забывай отмечать когда оно изменится! Для этого напиши комманду /add')
+		bot.send_message(message.from_user.id, 'Привет, начинаем записывать твое настроение.\nНе забывай отмечать когда оно изменится! Для этого напиши комманду /mood\n Нужна помощь? Пиши /help')
 		# если юзера нет в базе, добавляем его
 		db.add_subscriber(message.from_user.id)
 	else:
 		# если он уже есть, то просто обновляем ему статус подписки
-		bot.send_message(message.from_user.id, 'Привет, твое настроение уже считаем')
+		bot.send_message(message.from_user.id, 'Привет, твое настроение уже считаем\nНе забывай отмечать когда оно изменится! Для этого напиши комманду /mood\n Нужна помощь? Пиши /help')
 
+
+@bot.message_handler(commands=['help'])
+def help_message(message):
+	bot.send_message(message.from_user.id, 'Все просто!\nКомманды:\n /mood - Вызывает меню работы с настроением.\n /dell - Удалить данные (в разработке)')
 
 # создаем кнопки
-@bot.message_handler(commands=['add'])
+@bot.message_handler(commands=['mood'])
 def add_mood_data(message):
 	makrup_Inline = types.InlineKeyboardMarkup()
-	yes_bt = types.InlineKeyboardButton(text='YES', callback_data='yes')
-	no_bt = types.InlineKeyboardButton(text='PRINT', callback_data='print')
+	yes_bt = types.InlineKeyboardButton(text='ДОБАВИТЬ', callback_data='yes')
+	no_bt = types.InlineKeyboardButton(text='ГРАФИК', callback_data='print')
 	makrup_Inline.add(yes_bt, no_bt)
-	bot.send_message(message.chat.id, 'Добавить настроение?',reply_markup=makrup_Inline)
+	bot.send_message(message.chat.id, 'Что хочешь сделать?',reply_markup=makrup_Inline)
 
 # создаем кнопки под полем ввода
 @bot.callback_query_handler(func=lambda call: True)
