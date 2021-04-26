@@ -5,7 +5,6 @@ import config
 from telebot import types
 from sqlighter import sqlighter
 from chart import save
-from chart import get_user_id
 
 bot = telebot.TeleBot(config.TOKEN)
 db = sqlighter('db.db')

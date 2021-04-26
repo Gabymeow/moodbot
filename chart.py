@@ -6,23 +6,17 @@ import os
 BASE_DIR = str(os.path.dirname(os.path.abspath(__file__)))
 db = sqlighter('db.db')
 
-#def save(name='', fmt='png'):
-
-
-
 def save(name, fmt, myuser_id):
     db = sqlighter('db.db')
     data = db.get_data(myuser_id)[0]
      
     x = ('Счастливый', 'Несчастный', 'Веселый', 'Расстроенный', 'Злой', 'Грустный', 'Бодрый', 'Энергичный', 'Вялый')
     z1 = data[2:11]
-
-    # bar()
+    width = 0.8
     fig = plt.figure()
-    plt.bar(x, z1)
+    fig.set_figwidth(12)
+    plt.bar(x, z1, width)
     plt.title('График твоего настроения')
-    plt.grid(True)
-
 
     pwd = os.getcwd()
     iPath = BASE_DIR
