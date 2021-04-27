@@ -5,6 +5,7 @@ import config
 from telebot import types
 from sqlighter import sqlighter
 from chart import save
+from randomly import random_moods as r_moods
 
 bot = telebot.TeleBot(config.TOKEN)
 db = sqlighter('db.db')
@@ -68,13 +69,13 @@ def mood_calc(message):
 		score += 1
 		mood_name = 'happy'
 		db.mood_update(mood_name, score, message.from_user.id)
-		bot.send_message(message.chat.id, 'Супер, хорошего дня😉')
+		bot.send_message(message.chat.id, r_moods.random_happy())
 	elif message.text == 'Несчастный':
 		score = db.get_data(message.from_user.id)[0][3]
 		score += 1
 		mood_name = 'unhappy'
 		db.mood_update(mood_name, score, message.from_user.id)
-		bot.send_message(message.chat.id, 'Очень жаль🙁')
+		bot.send_message(message.chat.id, r_moods.random_unhappy())
 	elif message.text == 'Веселый':
 		score = db.get_data(message.from_user.id)[0][4]
 		score += 1
