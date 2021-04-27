@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from sqlighter import sqlighter
 import numpy as np
 import os
+import matplotlib.ticker as ticker
 
 BASE_DIR = str(os.path.dirname(os.path.abspath(__file__)))
 db = sqlighter('db.db')
@@ -13,10 +14,12 @@ def save(name, fmt, myuser_id):
     x = ('Счастливый', 'Несчастный', 'Веселый', 'Расстроенный', 'Злой', 'Грустный', 'Бодрый', 'Энергичный', 'Вялый')
     z1 = data[2:11]
     width = 0.8
-    fig = plt.figure()
+    #fig = plt.figure()
+    fig, ax = plt.subplots()
     fig.set_figwidth(12)
     plt.bar(x, z1, width)
     plt.title('График твоего настроения')
+    ax.tick_params(labelleft = False)
 
     pwd = os.getcwd()
     iPath = BASE_DIR
