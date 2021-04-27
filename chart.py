@@ -7,6 +7,7 @@ import matplotlib.ticker as ticker
 import time
 
 BASE_DIR = str(os.path.dirname(os.path.abspath(__file__)))
+#save paht = json_file = os.path.exists(BASE_DIR+f'{myuser_id}.png')
 db = sqlighter('db.db')
 matplotlib.use('Agg') 
 
@@ -25,7 +26,7 @@ def save(myuser_id):
     plt.bar(x, z1, width)
     plt.title('График твоего настроения')
     ax.tick_params(labelleft = False)
-    my_path = os.path.abspath(__file__)
-    plt.savefig(f'{myuser_id}.png')
+    plt.savefig(f'{BASE_DIR}/img/{myuser_id}.png')
+    print(f'{BASE_DIR}/img/{myuser_id}.png')
     plt.close('all')
     del fig

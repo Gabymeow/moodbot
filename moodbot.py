@@ -1,5 +1,6 @@
 import telebot
 import config
+import os
 
 
 from telebot import types
@@ -7,6 +8,7 @@ from sqlighter import sqlighter
 from chart import save
 from randomly import random_moods as r_moods
 
+BASE_DIR = str(os.path.dirname(os.path.abspath(__file__)))
 bot = telebot.TeleBot(config.TOKEN)
 db = sqlighter('db.db')
 
@@ -58,7 +60,7 @@ def count_mood(call):
 	elif call.data == 'print':
 		bot.send_message(call.message.chat.id, 'График будет сейчас будет отправлен')
 		save(call.message.chat.id)
-		bot.send_photo(call.message.chat.id, open(str(call.message.chat.id)+'.png','rb'))
+		bot.send_photo(call.message.chat.id, open(f'{BASE_DIR}/img/{call.message.chat.id}.png','rb'))
 		
 # считаем настроение
 @bot.message_handler(content_types = ['text'])
