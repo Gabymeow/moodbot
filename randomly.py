@@ -1,14 +1,14 @@
 import random
 class random_moods:
-	def random_happy():
-		happy_list1 = ['Отлчно,','Классно,','Очень хорошо,','Супер,']
-		happy_list2 = ['хорошего дня','так держать','ты молодец']
-		happy_emoji = ['😀','😉','☺️']
-		happy_words = random.choice(happy_list1) + ' ' + random.choice(happy_list2)+ ' ' + random.choice(happy_emoji)
+	def random_positive():
+		positive_list1 = ['Отлчно,','Классно,','Очень хорошо,','Супер,']
+		positive_list2 = ['хорошего дня','так держать','ты молодец']
+		positive_emoji = ['😀','😉','☺️']
+		positive_words = random.choice(positive_list1) + ' ' + random.choice(positive_list2)+ ' ' + random.choice(positive_emoji)
 		return happy_words
-	def random_unhappy():
-		unhappy_list1 = ['Очень жаль,','Ты чего,','Бывает и хуже,']
-		unhappy_list2 = ['не грусти','это не конец света','улыбнись']
-		unhappy_emoji = ['🙂','😉','💋']
-		unhappy_words = random.choice(unhappy_list1) + ' ' + random.choice(unhappy_list2)+ ' ' + random.choice(unhappy_emoji)
+	def random_negative():
+		negative_list1 = ['Очень жаль,','Ты чего,','Бывает и хуже,','Взбодрись','Не унывай','Расслабься']
+		negative_list2 = ['не грусти','это не конец света','улыбнись']
+		negative_emoji = ['🙂','😉','💋']
+		negative_words = random.choice(negative_list1) + ' ' + random.choice(negative_list2)+ ' ' + random.choice(negative_emoji)
 		return unhappy_words
