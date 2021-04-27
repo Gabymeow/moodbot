@@ -69,54 +69,54 @@ def mood_calc(message):
 		score += 1
 		mood_name = 'happy'
 		db.mood_update(mood_name, score, message.from_user.id)
-		bot.send_message(message.chat.id, r_moods.random_happy())
+		bot.send_message(message.chat.id, r_moods.random_positive())
 	elif message.text == 'Несчастный':
 		score = db.get_data(message.from_user.id)[0][3]
 		score += 1
 		mood_name = 'unhappy'
 		db.mood_update(mood_name, score, message.from_user.id)
-		bot.send_message(message.chat.id, r_moods.random_unhappy())
+		bot.send_message(message.chat.id, r_moods.random_negative())
 	elif message.text == 'Веселый':
 		score = db.get_data(message.from_user.id)[0][4]
 		score += 1
 		mood_name = 'marry'
 		db.mood_update(mood_name, score, message.from_user.id)
-		bot.send_message(message.chat.id, 'WOW🥳')
+		bot.send_message(message.chat.id, r_moods.random_positive())
 	elif message.text == 'Расстроенный':
 		score = db.get_data(message.from_user.id)[0][5]
 		score += 1
 		mood_name = 'sorry'
 		db.mood_update(mood_name, score, message.from_user.id)
-		bot.send_message(message.chat.id, 'Раз ты тут, то все хорошо👍')
+		bot.send_message(message.chat.id, r_moods.random_negative())
 	elif message.text == 'Злой':
 		score = db.get_data(message.from_user.id)[0][7]
 		score += 1
 		mood_name = 'angry'
 		db.mood_update(mood_name, score, message.from_user.id)
-		bot.send_message(message.chat.id, 'Расслабь булки💋')
+		bot.send_message(message.chat.id, r_moods.random_negative())
 	elif message.text == 'Грустный':
 		score = db.get_data(message.from_user.id)[0][8]
 		score += 1
 		mood_name = 'sad'
 		db.mood_update(mood_name, score, message.from_user.id)
-		bot.send_message(message.chat.id, 'Не грусти😢')
+		bot.send_message(message.chat.id, r_moods.random_negative())
 	elif message.text == 'Бодрый':
 		score = db.get_data(message.from_user.id)[0][9]
 		score += 1
 		mood_name = 'cheerful'
 		db.mood_update(mood_name, score, message.from_user.id)
-		bot.send_message(message.chat.id, 'WOW🥳')
+		bot.send_message(message.chat.id, r_moods.random_positive())
 	elif message.text == 'Энергичный':
 		score = db.get_data(message.from_user.id)[0][10]
 		score += 1
 		mood_name = 'high_spirited'
 		db.mood_update(mood_name, score, message.from_user.id)
-		bot.send_message(message.chat.id, 'WOW🥳')
+		bot.send_message(message.chat.id, r_moods.random_positive())
 	elif message.text == 'Вялый':
 		score = db.get_data(message.from_user.id)[0][-1]
 		score += 1
 		mood_name = 'low_spirited'
 		db.mood_update(mood_name, score, message.from_user.id)
-		bot.send_message(message.chat.id, 'Взбодрись🥳')
+		bot.send_message(message.chat.id, r_moods.random_negative())
 
 bot.polling(none_stop=True)
