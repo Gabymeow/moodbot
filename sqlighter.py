@@ -6,7 +6,7 @@ class sqlighter:
         self.cursor = self.connection.cursor()
     def add_subscriber(self, user_id, happy=0, unhappy=0, marry=0,sorry=0,angry=0,sad=0,cheerful=0,high_spirited=0,low_spirited=0):
         with self.connection:
-            return self.cursor.execute("INSERT INTO `list` (`user_id`, `happy`, `unhappy`,`marry`, `sorry`, `angry`,`sad`,`cheerful`, `high_spirited`, `low_spirited`) VALUES(?,?,?,?,?,?,?,?,?,?)", (user_id,happy,unhappy,marry,sorry,angry,sad,cheerful,high_spirited,low_spirited))
+            return self.cursor.execute("INSERT INTO `list` (`user_id`, `happy`, `unhappy`,`marry`, `sorry`, `angry`,`sad`,`cheerful`,`high_spirited`, `low_spirited`) VALUES(?,?,?,?,?,?,?,?,?,?)", (user_id,happy,unhappy,marry,sorry,angry,sad,cheerful,high_spirited,low_spirited))
 
     def subscriber_exists(self, user_id):
         with self.connection:
