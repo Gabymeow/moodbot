@@ -20,7 +20,7 @@ def new_user(message):
 		db.add_subscriber(message.from_user.id)
 	else:
 		# если он уже есть, то просто обновляем ему статус подписки
-		bot.send_message(message.from_user.id, 'Привет, твое настроение уже считаем\nНе забывай отмечать когда оно изменится! Для этого напиши комманду /mood\n Нужна помощь? Пиши /help')
+		bot.send_message(message.from_user.id, 'Привет, твое настроение уже считаем.\nНе забывай отмечать когда оно изменится! Для этого напиши комманду /mood\n Нужна помощь? Пиши /help')
 
 
 @bot.message_handler(commands=['help'])
@@ -57,7 +57,7 @@ def count_mood(call):
 		bot.send_message(call.message.chat.id, 'Выбери настроение',reply_markup=markup_reply) # обращение к message в обработчике call
 	elif call.data == 'print':
 		bot.send_message(call.message.chat.id, 'График будет сейчас будет отправлен')
-		save(str(call.message.chat.id), 'png',call.message.chat.id)
+		save(call.message.chat.id)
 		bot.send_photo(call.message.chat.id, open(str(call.message.chat.id)+'.png','rb'))
 		
 # считаем настроение
