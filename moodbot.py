@@ -37,7 +37,7 @@ def add_mood_data(message):
 	yes_bt = types.InlineKeyboardButton(text='ДОБАВИТЬ', callback_data='yes')
 	no_bt = types.InlineKeyboardButton(text='ГРАФИК', callback_data='print')
 	makrup_Inline.add(yes_bt, no_bt)
-	bot.send_message(message.chat.id, 'Что хочешь сделать?',reply_markup=makrup_Inline)
+	bot.send_message(message.chat.id, 'Что хочешь сделать?', reply_markup=makrup_Inline)
 
 
 # создаем кнопки под полем ввода
@@ -55,18 +55,16 @@ def count_mood(call):
 		cheerful_bt = types.KeyboardButton('Бодрый')
 		high_spirited_bt = types.KeyboardButton('Энергичный')
 		low_spirited_bt = types.KeyboardButton('Вялый')
-
-
 		markup_reply.add(happy_bt, unhappy_bt, marry_bt, sorry_bt, angry_bt, sad_bt, cheerful_bt, high_spirited_bt, low_spirited_bt)
-		bot.send_message(call.message.chat.id, 'Выбери настроение',reply_markup=markup_reply) # обращение к message в обработчике call
+		bot.send_message(call.message.chat.id, 'Выбери настроение', reply_markup=markup_reply) # обращение к message в обработчике call
 	elif call.data == 'print':
 		bot.send_message(call.message.chat.id, 'График будет сейчас будет отправлен')
 		save(call.message.chat.id)
-		bot.send_photo(call.message.chat.id, open(f'{BASE_DIR}/img/{call.message.chat.id}.png','rb'))
+		bot.send_photo(call.message.chat.id, open(f'{BASE_DIR}/img/{call.message.chat.id}.png', 'rb'))
 
 
 # считаем настроение
-@bot.message_handler(content_types = ['text'])
+@bot.message_handler(content_types=['text'])
 def mood_calc(message):
 	db = sqlighter('db.db')
 	if message.text == 'Счастливый':
@@ -94,31 +92,31 @@ def mood_calc(message):
 		db.mood_update(mood_name, score, message.from_user.id)
 		bot.send_message(message.chat.id, r_moods.random_negative())
 	elif message.text == 'Злой':
-		score = db.get_data(message.from_user.id)[0][7]
+		score = db.get_data(message.from_user.id)[0][6]
 		score += 1
 		mood_name = 'angry'
 		db.mood_update(mood_name, score, message.from_user.id)
 		bot.send_message(message.chat.id, r_moods.random_negative())
 	elif message.text == 'Грустный':
-		score = db.get_data(message.from_user.id)[0][8]
+		score = db.get_data(message.from_user.id)[0][7]
 		score += 1
 		mood_name = 'sad'
 		db.mood_update(mood_name, score, message.from_user.id)
 		bot.send_message(message.chat.id, r_moods.random_negative())
 	elif message.text == 'Бодрый':
-		score = db.get_data(message.from_user.id)[0][9]
+		score = db.get_data(message.from_user.id)[0][8]
 		score += 1
 		mood_name = 'cheerful'
 		db.mood_update(mood_name, score, message.from_user.id)
 		bot.send_message(message.chat.id, r_moods.random_positive())
 	elif message.text == 'Энергичный':
-		score = db.get_data(message.from_user.id)[0][10]
+		score = db.get_data(message.from_user.id)[0][9]
 		score += 1
 		mood_name = 'high_spirited'
 		db.mood_update(mood_name, score, message.from_user.id)
 		bot.send_message(message.chat.id, r_moods.random_positive())
 	elif message.text == 'Вялый':
-		score = db.get_data(message.from_user.id)[0][-1]
+		score = db.get_data(message.from_user.id)[0][10]
 		score += 1
 		mood_name = 'low_spirited'
 		db.mood_update(mood_name, score, message.from_user.id)
