@@ -5,3 +5,8 @@
 *.db
 *.db
 *.pyc
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/moodbot.iml
+.idea/vcs.xml
