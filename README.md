@@ -1,2 +1,7 @@
 # moodbot
-telegram bot for tracking mood
+##telegram bot for tracking mood
+
+/start - Начать работу с трекером
+/mood - Вызвать меню работы с настроением 
+/del - Удалить настроение (в разработке)
+/help - Получить помощь по коммандам бота
