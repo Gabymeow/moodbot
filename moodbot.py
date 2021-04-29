@@ -2,15 +2,15 @@ import telebot
 import config
 import os
 
-
 from telebot import types
 from sqlighter import sqlighter
 from chart import save
-from randomly import random_moods as r_moods
+from randomly import RandomMoods as r_moods
 
 BASE_DIR = str(os.path.dirname(os.path.abspath(__file__)))
 bot = telebot.TeleBot(config.TOKEN)
 db = sqlighter('db.db')
+
 
 # проверка пользователя
 @bot.message_handler(commands=['start'])
@@ -29,6 +29,7 @@ def new_user(message):
 def help_message(message):
 	bot.send_message(message.from_user.id, 'Все просто!\nКомманды:\n /mood - Вызывает меню работы с настроением.\n /dell - Удалить данные (в разработке)')
 
+
 # создаем кнопки
 @bot.message_handler(commands=['mood'])
 def add_mood_data(message):
@@ -37,6 +38,7 @@ def add_mood_data(message):
 	no_bt = types.InlineKeyboardButton(text='ГРАФИК', callback_data='print')
 	makrup_Inline.add(yes_bt, no_bt)
 	bot.send_message(message.chat.id, 'Что хочешь сделать?',reply_markup=makrup_Inline)
+
 
 # создаем кнопки под полем ввода
 @bot.callback_query_handler(func=lambda call: True)
@@ -61,7 +63,8 @@ def count_mood(call):
 		bot.send_message(call.message.chat.id, 'График будет сейчас будет отправлен')
 		save(call.message.chat.id)
 		bot.send_photo(call.message.chat.id, open(f'{BASE_DIR}/img/{call.message.chat.id}.png','rb'))
-		
+
+
 # считаем настроение
 @bot.message_handler(content_types = ['text'])
 def mood_calc(message):
@@ -120,5 +123,6 @@ def mood_calc(message):
 		mood_name = 'low_spirited'
 		db.mood_update(mood_name, score, message.from_user.id)
 		bot.send_message(message.chat.id, r_moods.random_negative())
+
 
 bot.polling(none_stop=True)
