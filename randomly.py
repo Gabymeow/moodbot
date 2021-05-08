@@ -17,3 +17,4 @@ class RandomMoods:
 		negative_emoji = ['🙂', '😌', '💋', '😇']
 		negative_words = random.choice(negative_list1) + ' ' + random.choice(negative_list2) + ' ' + random.choice(negative_emoji)
 		return negative_words
+#mod write by me
