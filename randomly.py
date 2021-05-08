@@ -18,3 +18,4 @@ class RandomMoods:
 		negative_words = random.choice(negative_list1) + ' ' + random.choice(negative_list2) + ' ' + random.choice(negative_emoji)
 		return negative_words
 #mod write by me
+#mod write by me on mac
