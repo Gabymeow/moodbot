@@ -2,8 +2,6 @@
 .DS_Store
 *.pyc
 *.png
-*.db
-*.db
 *.pyc
 .idea/inspectionProfiles/profiles_settings.xml
 .idea/misc.xml
